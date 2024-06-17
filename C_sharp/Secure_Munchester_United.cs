@@ -1,7 +1,7 @@
 using System;
 public class SecurityPassMaker
 {
-    public string GetDisplayName(TeamSupport support)
+    /* public string GetDisplayName(TeamSupport support)
     {
         if ((support is Security security) && !(support is SecurityJunior) && !(support is SecurityIntern) && !(support is PoliceLiaison)) 
         {
@@ -15,7 +15,13 @@ public class SecurityPassMaker
         {
             return "Too Important for a Security Pass";    
         }
-    }
+    } */
+    public string GetDisplayName(TeamSupport support) => support switch 
+    {
+        Security when support.GetType() == typeof(Security) => $"{support.Title} Priority Personnel",
+        Staff => support.Title,
+        _ => "Too Important for a Security Pass"
+    };
 }
 /**** Please do not alter the code below ****/
 public interface TeamSupport { string Title { get; } }
